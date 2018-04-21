@@ -1,0 +1,22 @@
+{
+  "name": "senior-weather-app",
+  "version": "1.0.0",
+  "description": "Senior Weather App",
+  "main": "index.js",
+  "author": "Marcos Vinicius <vmarcosp>",
+  "license": "none",
+  "scripts": {
+    "lint":"eslint src/"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "dependencies": {
+    "cross-env": "^5.1.4"
+  }
+}
