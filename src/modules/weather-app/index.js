@@ -1,5 +1,12 @@
+import locationForm from '@modules/location-form'
+
+// Scss import
 import './index.scss'
 
-export default class WeatherApp {
-
+class WeatherApp {
+  init () {
+    locationForm.init()
+  }
 }
+
+export default new WeatherApp()

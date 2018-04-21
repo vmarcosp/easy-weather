@@ -12,8 +12,10 @@ module.exports = function (env, argv) {
 
     resolve: {
       alias: {
-        '@scss': resolve(__dirname, 'src/scss')
-        '@constants': resolve(__dirname, 'src/constants')
+        '@scss': resolve(__dirname, 'src/scss'),
+        '@constants': resolve(__dirname, 'src/constants'),
+        '@modules': resolve(__dirname, 'src/modules'),
+        '@utils': resolve(__dirname, 'src/utils')
       }
     },
 
