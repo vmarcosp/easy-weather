@@ -4,9 +4,11 @@
   "description": "Senior Weather App",
   "main": "index.js",
   "author": "Marcos Vinicius <vmarcosp>",
-  "license": "none",
+  "license": "MIT",
   "scripts": {
-    "lint":"eslint src/"
+    "build":"mkdir build && webpack --mode=production",
+    "lint": "eslint src/",
+    "dev": "webpack-dev-server --mode=development"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -14,9 +16,10 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^3.1.3"
   },
-  "dependencies": {
-    "cross-env": "^5.1.4"
-  }
+  "dependencies": {}
 }
