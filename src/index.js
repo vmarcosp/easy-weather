@@ -1,3 +1,5 @@
-// Working
+// Scss imports
 import './scss/index.scss'
-console.log('HERE.....')
+
+// Components
+import './components'

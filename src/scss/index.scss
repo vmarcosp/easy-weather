@@ -1,3 +1,6 @@
-body{
-  background:red;
+@import '~normalize.css/normalize';
+
+body, html {
+  height: 100%;
+  width: 100%;
 }

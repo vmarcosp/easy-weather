@@ -10,6 +10,12 @@ module.exports = function (env, argv) {
       filename: 'bundle.js'
     },
 
+    resolve: {
+      alias: {
+        '@scss': resolve(__dirname, 'src/scss')
+      }
+    },
+
     module: {
       rules: [{
         test: /\.scss$/,
