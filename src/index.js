@@ -1,5 +1,5 @@
 // Scss imports
 import './scss/index.scss'
 
-// Components
-import './modules'
+// Call the controllers module
+import './controllers'
