@@ -1,10 +1,14 @@
-//Mobile rules
+@import '@scss/utils/_variables.scss';
+
+/**
+* Mobile rules
+*/
 .location-form{
   js-display:flex;
   display: flex;
   position: fixed;
   z-index: 20;
-  margin: -500px;
+  margin-left: -102%;
   top: 0;
   left: 0;
   height: 100%;
@@ -12,7 +16,9 @@
   box-sizing: border-box;
   padding : 1rem;
   flex-direction: column;
+  transition: 500ms;
   &.-active{
+    transition: 500ms;
     margin: 0;
   }
   >.inputscontainer{
@@ -23,5 +29,49 @@
     font-size: 25px;
     margin-bottom: 5px;
     align-self: flex-end;
+  }
+}
+
+/**
+* Tablet rules
+*/
+@media screen and (min-width:$tablet-size) {
+  .location-form{
+    margin: 0;
+    padding-top: 1.5rem;
+    height: auto;
+    margin: 0 auto;
+    background: transparent!important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    > .inputscontainer{
+      padding: {
+        right: 5px;
+        left: 5px;
+      }
+      width: 100%;
+      js-display:flex;
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+    >.buttoncontainer{
+      padding: {
+        right: 5px;
+        left: 5px;
+      }
+    }
+    >.closebutton{
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width:$desktop-size) {
+  .location-form{
+    max-width: 900px;
   }
 }

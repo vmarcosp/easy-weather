@@ -3,7 +3,7 @@
   font-size: 16px;
   box-sizing: border-box;
   border: 0;
-  margin-bottom: 10px;
+  margin-left: 5px;
   padding:.6rem .2rem;
   width: 100%;
   text-transform: uppercase;
@@ -19,4 +19,7 @@
   &:-ms-input-placeholder {
       color: white;
   }
+ &:disabled {
+   cursor: not-allowed;
+ }
 }

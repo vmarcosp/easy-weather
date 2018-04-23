@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="freezing">
+<body class="hot">
   <div class="overlay"></div>
 
   <div class="app-container">
@@ -30,23 +30,18 @@
 
     </div>
 
-    <form data-element="location-form" class="location-form freezing">
+    <form data-element="location-form" class="location-form hot">
 
       <span data-element="close-button" class="closebutton fa fa-times"></span>
 
       <div class="inputscontainer">
-
-        <select required data-element="states-select" class="select-box">
-        </select>
-
-        <input placeholder="Cidade" required class="input" data-element="cities-select" />
-
+        <select required data-element="states-select" class="select-box"></select>
+        <input disabled placeholder="Cidade" required class="input" data-element="cities-select" />
       </div>
 
-      <div class="buttonscontainer">
+      <div class="buttoncontainer">
         <button class="button">BUSCAR</button>
       </div>
-
 
     </form>
 

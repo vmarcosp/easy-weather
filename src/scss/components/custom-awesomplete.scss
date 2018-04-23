@@ -1,0 +1,22 @@
+.awesomplete {
+ width: 100%;
+  >ul{
+    transform: 0!important;
+    transition: 0!important;
+    border-radius: 0!important;
+    box-shadow: 0!important;
+    &::before{
+      display: none;
+    }
+    >li{
+      text-transform: uppercase;
+    }
+    > li[aria-selected="true"]{
+      background: lightgray;
+    }
+    > li[aria-selected="true"] mark, mark{
+      text-decoration: underline;
+      background: transparent;
+    }
+  }
+}

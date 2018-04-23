@@ -66,6 +66,7 @@ class LocationForm {
       const state = this.states.filter(state =>
         state.id === parseInt(this.$statesSelect.value))[0]
       publish(NEW_CITY_SELECTED, { state, cityName: this.$citiesSelect.input.value })
+      this.$form.classList.remove('-active')
     })
   }
 
