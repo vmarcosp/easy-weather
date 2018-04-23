@@ -42,6 +42,7 @@
     "awesomplete": "^1.1.2",
     "axios": "^0.18.0",
     "flexibility": "^2.0.1",
+    "font-awesome": "4.7.0",
     "normalize.css": "^8.0.0",
     "pubsub-js": "^1.6.0",
     "qs": "^6.5.1"

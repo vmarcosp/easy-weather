@@ -1,7 +1,16 @@
+/**
+* Lib imports
+*/
 @import '~normalize.css/normalize';
-@import './components/index.scss';
+
+/**
+* Module imports
+*/
 @import './elements/index.scss';
+@import './components/index.scss';
+
 @import '@scss/utils/_variables.scss';
+@import '@scss/mixins/_weather.scss';
 
 body, html {
   font-family:Montserrat;
@@ -11,7 +20,35 @@ body, html {
   width: 100%;
 }
 
+.hot {
+  @include wi-background(bottom, rgb(251,89,97) 0%, rgb(255,158,105) 100%);
+}
+
+.warm {
+  @include wi-background(bottom, rgb(253,110,34) 0%, rgb(254,213,102) 100%);
+}
+
+.freezing {
+  @include wi-background(bottom, rgb(37,55,172) 0%, rgb(202,121,214) 100%);
+}
+
+.cold {
+  @include wi-background(bottom, rgb(37,55,172) 0%, rgb(202,121,214) 100%);
+}
+
+body {
+  position: relative;
+  >.overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.3);
+  }
+}
+
 .app-container{
+  position: relative;
+  z-index: 10;
   height: 100%;
-  background-image: url("http://wallpoper.com/images/00/44/66/90/aero-green-and-dark-blue_00446690.jpg");
 }

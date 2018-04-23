@@ -1,0 +1,6 @@
+@mixin wi-background($position, $firstItem, $secondItem){
+  background-image: -ms-linear-gradient($position, $firstItem, $secondItem);
+  background-image: linear-gradient($position, $firstItem, $secondItem);
+  background-image: -moz-linear-gradient($position, $firstItem, $secondItem);
+  background-image: -webkit-linear-gradient($position, $firstItem, $secondItem);
+}

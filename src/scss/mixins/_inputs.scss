@@ -1,9 +1,22 @@
 @mixin inputs(){
   outline: 0;
+  font-size: 16px;
   box-sizing: border-box;
-  // border: 0;
-  margin: 1px;
-  padding:.5rem;
+  border: 0;
+  margin-bottom: 10px;
+  padding:.6rem .2rem;
   width: 100%;
-  // border-bottom: solid 1px #d4d4d4;
+  text-transform: uppercase;
+  background: transparent;
+  border-bottom: solid 1px white;
+  color: white;
+  >option{
+    color:black;
+  }
+  &::placeholder {
+      color: white;
+  }
+  &:-ms-input-placeholder {
+      color: white;
+  }
 }

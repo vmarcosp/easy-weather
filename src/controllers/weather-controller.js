@@ -1,13 +1,20 @@
 import locationForm from '@components/location-form'
-import { NEW_CITY_SELECTED } from '@constants/events'
+import { NEW_CITY_SELECTED, OPEN_MENU } from '@constants/events'
 import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
-import axios from 'axios'
 import { stringify } from 'qs'
-import { subscribe } from 'pubsub-js'
+import { subscribe, publish } from 'pubsub-js'
+import { getAppElement } from '@utils/helpers'
+import axios from 'axios'
+import { $on } from '../utils/helpers'
 
 class WeatherController {
+  constructor () {
+    this.$menuButton = getAppElement('menu-button')
+  }
+
   init () {
     this._onChangeCity()
+    this._onMenuButtonClick()
     this._findByDefaultCity()
     locationForm.init()
   }
@@ -42,7 +49,12 @@ class WeatherController {
   }
 
   _findByDefaultCity () {
-    this._findWeather('Blumenau')
+    // this._findWeather('Blumenau')
+  }
+
+  _onMenuButtonClick () {
+    $on(this.$menuButton, 'click', () =>
+      publish(OPEN_MENU))
   }
 }
 

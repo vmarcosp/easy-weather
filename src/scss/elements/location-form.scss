@@ -1,4 +1,27 @@
 //Mobile rules
 .location-form{
-
+  js-display:flex;
+  display: flex;
+  position: fixed;
+  z-index: 20;
+  margin: -500px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding : 1rem;
+  flex-direction: column;
+  &.-active{
+    margin: 0;
+  }
+  >.inputscontainer{
+    flex: 1;
+  }
+  >.closebutton{
+    color: white;
+    font-size: 25px;
+    margin-bottom: 5px;
+    align-self: flex-end;
+  }
 }

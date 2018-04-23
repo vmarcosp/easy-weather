@@ -1,6 +1,7 @@
 @import '@scss/utils/_variables.scss';
 
 .app-navbar{
+    z-index: 10;
     padding: 1rem .5rem;
     js-display:flex;
     display: flex;
