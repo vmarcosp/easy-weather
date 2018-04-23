@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="hot">
+<body class="warm">
   <div class="overlay"></div>
 
   <div class="app-container">
@@ -24,17 +24,17 @@
       </button>
 
       <div class="logo">
-          <i class="wi wi-day-cloudy"></i>
+          <span class="wi wi-day-cloudy"></span>
           <span>EasyWeather</span>
+        </div>
+
       </div>
 
-    </div>
+      <form data-element="location-form" class="location-form warm">
 
-    <form data-element="location-form" class="location-form hot">
+        <span data-element="close-button" class="closebutton fa fa-times"></span>
 
-      <span data-element="close-button" class="closebutton fa fa-times"></span>
-
-      <div class="inputscontainer">
+        <div class="inputscontainer">
         <select required data-element="states-select" class="select-box"></select>
         <input disabled placeholder="Cidade" required class="input" data-element="cities-select" />
       </div>
@@ -47,6 +47,14 @@
 
     <div class="weather-details">
 
+      <div class="citydetails">BLUMENAU, SC</div>
+      <div class="maininfo">
+        <span class="wi wi-day-sunny"></span>
+        <span class="temperature">26 º<sup>c</sup></span>
+      </div>
+      <div class="subinfos">
+
+      </div>
     </div>
 
   </div>

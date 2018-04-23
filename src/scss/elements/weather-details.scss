@@ -1,0 +1,26 @@
+.weather-details{
+  js-display:flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  >.maininfo, >.citydetails{
+    color: white;
+  }
+  >.citydetails{
+    font-size: 20px;
+    padding: 1rem 0;
+  }
+  >.maininfo{
+    js-display:flex;
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    >.wi{
+      font-size: 50px;
+    }
+    >.temperature{
+      margin-left: 15px;
+      font-size: 50px;
+    }
+  }
+}
