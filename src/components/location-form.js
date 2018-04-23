@@ -1,4 +1,4 @@
-import { IBGE_URL } from '@constants/apis'
+import { IBGE_URL } from '@constants/api'
 import { getAppElement, $on } from '@utils/helpers'
 import { NEW_CITY_SELECTED } from '@constants/events'
 import Awesomplete from 'awesomplete'

@@ -31,7 +31,7 @@ module.exports = function (env, argv) {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['env']
+              presets: ['env', 'stage-2']
             }
           }
         }
