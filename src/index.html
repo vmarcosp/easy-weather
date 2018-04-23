@@ -11,16 +11,21 @@
 <body>
   <div class="app-container">
 
-    <button class="menu-button">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="app-navbar">
+      <button class="menubutton active">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 
-    <form class="location-form">
-      <select required data-element="states-select" class="select-box">
-      </select>
-      <input placeholder="Cidade" required class="input" data-element="cities-select" />
+
+    <form data-element="location-form" class="location-form">
+      <div class="inputs-container">
+        <select required data-element="states-select" class="select-box">
+        </select>
+        <input placeholder="Cidade" required class="input" data-element="cities-select" />
+      </div>
       <button class="button">GO</button>
     </form>
 

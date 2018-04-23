@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 // Scss imports
 import './scss/index.scss'
 

@@ -1,5 +1,5 @@
+import { $on } from '@utils/helpers'
 import weatherController from './weather-controller'
 
-window.addEventListener('DOMContentLoaded', () => {
-  weatherController.init()
-})
+$on(window, 'DOMContentLoaded', () =>
+  weatherController.init())

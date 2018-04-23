@@ -20,12 +20,22 @@ module.exports = function (env, argv) {
     },
 
     module: {
-      rules: [{
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }]
-        })
-      }]
+      rules: [
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({ use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }] })
+        },
+        {
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            }
+          }
+        }
+      ]
     },
 
     // Pretty stats
