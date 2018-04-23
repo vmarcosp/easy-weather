@@ -1,7 +1,15 @@
 @import '~normalize.css/normalize';
-@import '~awesomplete/style';
+@import './components/index.scss';
+@import './elements/index.scss';
 
 body, html {
+  font-family:Montserrat;
   height: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
+}
+
+.app-container{
+  padding: .5rem;
 }

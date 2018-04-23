@@ -1,0 +1,12 @@
+@import '~@scss/utils/_variables.scss';
+
+.button{
+  font-size: 16px;
+  padding: .5rem;
+  background:$pink;
+  outline: 0;
+  border: 0;
+  color: white;
+  width: 100%;
+  border-radius: 6px;
+}

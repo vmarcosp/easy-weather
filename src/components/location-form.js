@@ -21,7 +21,7 @@ class LocationForm {
 
   _findStates () {
     axios.get(`${IBGE_URL}/estados`)
-      .then(states => this._renderStates(states))
+      .then(response => this._renderStates(response.data))
   }
 
   _findCitiesByState (state) {
@@ -30,8 +30,9 @@ class LocationForm {
   }
 
   _renderStates (states) {
-    const $options = states.data.map(state =>
-      `<option value='${state.id}'>${state.nome}</option>`)
+    const $options = ['<option disabled selected="selected" value="">Estado</option>']
+    states.map(state =>
+      $options.push(`<option value='${state.id}'>${state.nome}</option>`))
     this.$statesSelect.innerHTML = $options.join(' ')
   }
 
