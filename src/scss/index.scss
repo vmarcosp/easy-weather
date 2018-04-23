@@ -1,6 +1,7 @@
 @import '~normalize.css/normalize';
 @import './components/index.scss';
 @import './elements/index.scss';
+@import '@scss/utils/_variables.scss';
 
 body, html {
   font-family:Montserrat;
@@ -11,5 +12,6 @@ body, html {
 }
 
 .app-container{
-  padding: .5rem;
+  height: 100%;
+  background-image: url("http://wallpoper.com/images/00/44/66/90/aero-green-and-dark-blue_00446690.jpg");
 }

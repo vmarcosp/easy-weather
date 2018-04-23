@@ -8,6 +8,7 @@ import { subscribe } from 'pubsub-js'
 class WeatherController {
   init () {
     this._onChangeCity()
+    this._findByDefaultCity()
     locationForm.init()
   }
 
@@ -38,6 +39,10 @@ class WeatherController {
       this._findWeather(data.cityName)
       this._findForecast(data.cityName)
     })
+  }
+
+  _findByDefaultCity () {
+    this._findWeather('Blumenau')
   }
 }
 

@@ -1,4 +1,71 @@
-//mobile rules
-.app-navbar{
+@import '@scss/utils/_variables.scss';
 
+.app-navbar{
+    padding: 1rem .5rem;
+    js-display:flex;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    >.logo{
+      margin:0 auto;
+      color: white;
+      js-display:flex;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      >.wi{
+        font-size: 32px;
+      }
+      >span{
+        font-weight: 700;
+        display: block;
+        margin-left: 10px;
+        font-size: 20px;
+      }
+  }
+}
+
+.menubutton{
+  border: none;
+  height: 20px;
+  background: transparent;
+  position: relative;
+  width: 30px;
+  cursor: pointer;
+  outline: none;
+  >span {
+      position: absolute;
+      display: block;
+      height: 2px;
+      background: white;
+      width: 100%;
+  }
+  >span:nth-child(1) {
+      top: 0px;
+  }
+  >span:nth-child(2) {
+      top: 8px;
+  }
+  >span:nth-child(3) {
+      top: 16px;
+  }
+}
+
+@media screen and (min-width:$tablet-size) {
+  .app-navbar{
+    >.menubutton{
+      display: none;
+    }
+    >.logo{
+      >.wi{
+        font-size: 42px;
+      }
+      >span{
+        font-weight: 700;
+        display: block;
+        margin-left: 10px;
+        font-size: 30px;
+      }
+    }
+  }
 }
