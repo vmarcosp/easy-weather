@@ -56,8 +56,10 @@ class LocationForm {
   }
 
   _onStatesSelectChange () {
-    $on(this.$statesSelect, 'change', $event =>
-      this._findCitiesByState($event.target.value))
+    $on(this.$statesSelect, 'change', $event => {
+      this._findCitiesByState($event.target.value)
+      this.$citiesSelect.input.disabled = false
+    })
   }
 
   _onFormSubmit () {
