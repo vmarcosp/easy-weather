@@ -25,5 +25,5 @@ npm run start
 npm run build
 ```
 ## Live demo
-![](https://github.com/vmarcosp/easy-weather/blob/master/demo/1.jpg)
+![](https://github.com/vmarcosp/easy-weather/blob/master/demo/1.JPG)
 - [Link live demo](https://easyweather.netlify.com/)
