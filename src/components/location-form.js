@@ -1,9 +1,9 @@
+import Awesomplete from 'awesomplete'
+import axios from 'axios'
 import { IBGE_URL } from '@constants/api'
 import { getAppElement, $on } from '@utils/helpers'
 import { NEW_CITY_SELECTED, OPEN_MENU } from '@constants/events'
-import Awesomplete from 'awesomplete'
 import { publish, subscribe } from 'pubsub-js'
-import axios from 'axios'
 
 const AUTOCOMPLETE_OPTIONS = {
   data: item => ({ label: item.nome, value: item.nome }),

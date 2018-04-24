@@ -16,11 +16,11 @@
 
 </head>
 
-<body class="cool">
+<body>
 
-  <div class="overlay"></div>
+  <!-- <div class="overlay"></div> -->
 
-  <div class="app-container">
+  <div data-element="app-container" class="app-container">
 
     <div class="app-navbar">
 
@@ -34,7 +34,6 @@
         <span class="wi wi-day-cloudy"></span>
         <span>EasyWeather</span>
       </div>
-
     </div>
 
     <form data-element="location-form" class="location-form">
@@ -56,6 +55,11 @@
 
       <div data-element="location-info" class="citydetails"></div>
 
+      <div data-element="favorite-button" class="favorite-button">
+        <span class="fa fa-star-o"></span>
+        <span class="label">favorito</span>
+      </div>
+
       <div class="maininfo">
         <span data-element="weather-icon" class="wi"></span>
         <span data-element="city-temperature" class="temperature"></span>
@@ -66,18 +70,15 @@
         <span data-element="min-temp" class="temperature"></span>
       </div>
 
+
+
     </div>
 
     <div data-element="week-forecast" class="week-forecast">
       <ul data-element="forecast-days-list" class="dayslist">
     </div>
 
-    <div data-element="favorite-button" class="favorite-button">
-      <span class="fa fa-star-o"></span>
-    </div>
-
   </div>
-
 
   <script src="./bundle.js"></script>
 

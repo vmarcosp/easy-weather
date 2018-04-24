@@ -20,6 +20,7 @@ class WeatherController {
     this.$menuButton = getAppElement('menu-button')
     this.$locationForm = getAppElement('location-form')
     this.$favoriteButton = getAppElement('favorite-button')
+    this.$weekForecastChart = getAppElement('week-forecast-chart')
 
     this.currentAppTheme = 'cool'
     this.currentLocation = store.get(FAVORITE_LOCATION_NAME) || {
@@ -88,10 +89,12 @@ class WeatherController {
    */
   _changeAppTheme (currentTemperature) {
     const theme = this._getCurrentTheme(currentTemperature)
-    document.body.classList.remove(this.currentAppTheme)
+    const $container = getAppElement('app-container')
+
+    $container.classList.remove(this.currentAppTheme)
     this.$locationForm.classList.remove(this.currentAppTheme)
 
-    document.body.classList.add(theme)
+    $container.classList.add(theme)
     this.$locationForm.classList.add(theme)
 
     this.currentAppTheme = theme
