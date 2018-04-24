@@ -11,10 +11,10 @@
     >li{
       text-transform: uppercase;
     }
-    > li[aria-selected="true"]{
+    > li[aria-selected="true"], >li:hover{
       background: lightgray;
     }
-    > li[aria-selected="true"] mark, mark{
+    > li[aria-selected="true"] mark, mark, > li:hover > mark{
       text-decoration: underline;
       background: transparent;
     }

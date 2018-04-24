@@ -1,11 +1,10 @@
 @import '@scss/utils/_variables.scss';
+@import '@scss/utils/_flexbox.scss';
 
 /**
 * Mobile rules
 */
 .location-form{
-  js-display:flex;
-  display: flex;
   position: fixed;
   z-index: 20;
   margin-left: -102%;
@@ -15,20 +14,21 @@
   width: 100%;
   box-sizing: border-box;
   padding : 1rem;
-  flex-direction: column;
   transition: 500ms;
   &.-active{
     transition: 500ms;
     margin: 0;
   }
   >.inputscontainer{
-    flex: 1;
+  }
+  >.buttoncontainer{
+    margin-top: 10px;
   }
   >.closebutton{
+    float: right;
     color: white;
     font-size: 25px;
     margin-bottom: 5px;
-    align-self: flex-end;
   }
 }
 
@@ -37,37 +37,21 @@
 */
 @media screen and (min-width:$tablet-size) {
   .location-form{
-    margin: 0;
-    padding-top: 1.5rem;
     height: auto;
     max-width: 500px;
     margin: 0 auto;
     background: transparent!important;
     position: relative;
-    js-display:flex;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
     &.-active{
       margin: 0 auto;
     }
     > .inputscontainer{
-      padding: {
-        right: 5px;
-        left: 5px;
-      }
       width: 100%;
-      js-display:flex;
-      display:flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-around;
+      display: block;
     }
     >.buttoncontainer{
-      padding: {
-        right: 5px;
-        left: 5px;
-      }
+      display: block;
+      width: 100%;
     }
     >.closebutton{
       display: none;
@@ -77,6 +61,6 @@
 
 @media screen and (min-width:$desktop-size) {
   .location-form{
-    max-width: 600px;
+    max-width: 450px;
   }
 }

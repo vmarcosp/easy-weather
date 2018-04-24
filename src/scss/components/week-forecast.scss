@@ -5,21 +5,22 @@
 */
 .week-forecast {
   >.dayslist{
-    js-display:flex;
+    -js-display:flex;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     margin: 0;
     padding: 1rem 0;
     box-sizing: border-box;
     list-style:none;
     >.day {
-      width: 100%;
+      margin: 0 auto;
+      width: 16%;
       color:white;
       text-align: center;
-      js-display:flex;
-      display: flex;
-      flex-direction: column;
+      >.max,>.min,>.label {
+        width: 100%;
+        display: block;
+      }
       >.label{
         padding: .5rem 0;
         font-weight: bold;

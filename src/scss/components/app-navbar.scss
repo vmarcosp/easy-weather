@@ -3,7 +3,7 @@
 .app-navbar{
     z-index: 10;
     padding: 1rem .5rem;
-    js-display:flex;
+    -js-display:flex;
     display: flex;
     box-sizing: border-box;
     align-items: center;
@@ -11,7 +11,7 @@
     >.logo{
       margin:0 auto;
       color: white;
-      js-display:flex;
+      -js-display:flex;
       display: flex;
       flex-direction: row;
       align-items: center;

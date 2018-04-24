@@ -1,7 +1,7 @@
 @import '@scss/utils/_variables.scss';
 
 .favorite-button{
-  js-display:flex;
+  -js-display:flex;
   display: flex;
   cursor: pointer;
   color: white;

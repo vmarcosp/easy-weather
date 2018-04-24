@@ -9,6 +9,7 @@ import 'chartjs-plugin-datalabels'
 
 import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
 import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
+import { showMessage } from '@utils/alert-dialog'
 import { subscribe, publish } from 'pubsub-js'
 import { stringify } from 'qs'
 import { getAppElement, $on, toCelsius, createChartOptions } from '@utils/helpers'
@@ -68,6 +69,8 @@ class WeatherController {
         this._checkFavoriteLocation(this.currentLocation)
         this._changeAppTheme(toCelsius(data.main.temp))
         publish(NEW_WEATHER, { ...data, ...this.currentLocation })
+      }).catch(response => {
+        showMessage('Não foram encontrados resultados para a cidade selecionada.', 5 * 1000)
       })
   }
 
