@@ -6,16 +6,23 @@ import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER, NEW_WEEKS_FORECAST } from '@
 import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
 
 import axios from 'axios'
+import store from 'store'
 import { subscribe, publish } from 'pubsub-js'
 import { stringify } from 'qs'
 import { getAppElement, $on, toCelsius } from '@utils/helpers'
+
+const FAVORITE_LOCATION_NAME = 'favoriteLocation'
+const FAVORITE_ACTIVE_ICON = 'fa-star'
+const FAVORITE_INACTIVE_ICON = 'fa-star-o'
 
 class WeatherController {
   constructor () {
     this.$menuButton = getAppElement('menu-button')
     this.$locationForm = getAppElement('location-form')
+    this.$favoriteButton = getAppElement('favorite-button')
+
     this.currentAppTheme = 'cool'
-    this.currentLocation = {
+    this.currentLocation = store.get(FAVORITE_LOCATION_NAME) || {
       cityName: 'Blumenau',
       state: { sigla: 'SC' }
     }
@@ -34,6 +41,7 @@ class WeatherController {
      */
     this._onChangeCity()
     this._onMenuButtonClick()
+    this._onFavoriteButtonClick()
 
     /**
      * Call methods
@@ -52,6 +60,7 @@ class WeatherController {
 
     axios(`${WEATHER_MAP_URL}weather?${stringify(query)}`)
       .then(({ data }) => {
+        this._checkFavoriteLocation(this.currentLocation)
         this._changeAppTheme(toCelsius(data.main.temp))
         publish(NEW_WEATHER, { ...data, ...this.currentLocation })
       })
@@ -69,8 +78,8 @@ class WeatherController {
   }
 
   _findByFavCity () {
-    this._findWeather('Blumenau')
-    this._findForecast('Blumenau')
+    this._findWeather(this.currentLocation.cityName)
+    this._findForecast(this.currentLocation.cityName)
   }
 
   /**
@@ -99,6 +108,25 @@ class WeatherController {
     else return 'freezing'
   }
 
+  /**
+   *
+   * @param {object} location
+   */
+  _checkFavoriteLocation (location) {
+    const { cityName, state } = this.currentLocation
+    const favoriteLocation = store.get(FAVORITE_LOCATION_NAME)
+    const $icon = this.$favoriteButton.querySelector('.fa')
+
+    // refatorar
+    if (favoriteLocation && favoriteLocation.cityName === cityName && state.sigla === favoriteLocation.state.sigla) {
+      $icon.classList.remove(FAVORITE_INACTIVE_ICON)
+      $icon.classList.add(FAVORITE_ACTIVE_ICON)
+    } else {
+      $icon.classList.add(FAVORITE_INACTIVE_ICON)
+      $icon.classList.remove(FAVORITE_ACTIVE_ICON)
+    }
+  }
+
   _onChangeCity () {
     subscribe(NEW_CITY_SELECTED, (message, data) => {
       this.currentLocation = data
@@ -110,6 +138,24 @@ class WeatherController {
   _onMenuButtonClick () {
     $on(this.$menuButton, 'click', () =>
       publish(OPEN_MENU))
+  }
+
+  _onFavoriteButtonClick () {
+    $on(this.$favoriteButton, 'click', () => {
+      const $icon = this.$favoriteButton.querySelector('.fa')
+      const favoriteLocation = store.get(FAVORITE_LOCATION_NAME)
+      const { cityName, state } = this.currentLocation
+
+      $icon.classList.toggle(FAVORITE_INACTIVE_ICON)
+      $icon.classList.toggle(FAVORITE_ACTIVE_ICON)
+
+      // Refatorar...
+      if (favoriteLocation && favoriteLocation.cityName === cityName && favoriteLocation.state.sigla && state.sigla) {
+        store.set(FAVORITE_LOCATION_NAME, undefined)
+      } else {
+        store.set(FAVORITE_LOCATION_NAME, this.currentLocation)
+      }
+    })
   }
 }
 

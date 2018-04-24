@@ -45,6 +45,7 @@
     "font-awesome": "4.7.0",
     "normalize.css": "^8.0.0",
     "pubsub-js": "^1.6.0",
-    "qs": "^6.5.1"
+    "qs": "^6.5.1",
+    "store": "^2.0.12"
   }
 }

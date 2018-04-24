@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Weather App</title>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles.css">
+
 </head>
-<body>
+
+<body class="cool">
+
   <div class="overlay"></div>
 
   <div class="app-container">
@@ -24,23 +31,23 @@
       </button>
 
       <div class="logo">
-          <span class="wi wi-day-cloudy"></span>
-          <span>EasyWeather</span>
-        </div>
-
+        <span class="wi wi-day-cloudy"></span>
+        <span>EasyWeather</span>
       </div>
 
-      <form data-element="location-form" class="location-form">
+    </div>
 
-        <span data-element="close-button" class="closebutton fa fa-times"></span>
+    <form data-element="location-form" class="location-form">
 
-        <div class="inputscontainer">
+      <span data-element="close-button" class="closebutton fa fa-times"></span>
+
+      <div class="inputscontainer">
         <select required data-element="states-select" class="select-box"></select>
         <input disabled placeholder="Cidade" required class="input" data-element="cities-select" />
       </div>
 
       <div class="buttoncontainer">
-        <button class="button">BUSCAR</button>
+        <button class="button" title="Buscar Previsão">BUSCAR</button>
       </div>
 
     </form>
@@ -65,7 +72,15 @@
       <ul data-element="forecast-days-list" class="dayslist">
     </div>
 
+    <div data-element="favorite-button" class="favorite-button">
+      <span class="fa fa-star-o"></span>
+    </div>
+
   </div>
+
+
   <script src="./bundle.js"></script>
+
 </body>
+
 </html>

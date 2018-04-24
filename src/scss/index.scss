@@ -7,7 +7,6 @@
 /**
 * Module imports
 */
-@import './elements/index.scss';
 @import './components/index.scss';
 
 @import '@scss/utils/_variables.scss';
@@ -52,6 +51,7 @@ body {
 .app-container{
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
   height: 100%;
 }
 

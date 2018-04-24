@@ -72,6 +72,9 @@ class LocationForm {
       publish(NEW_CITY_SELECTED, { state, cityName: this.$citiesSelect.input.value })
 
       this.$form.classList.remove('-active')
+      this.$citiesSelect.input.value = ''
+      this.$citiesSelect.input.disabled = true
+      this.$statesSelect.value = ''
     })
   }
 
