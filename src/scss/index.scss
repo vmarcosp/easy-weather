@@ -69,3 +69,21 @@ body {
 .cold {
   @include wi-background(bottom, rgb(37,55,172) 0%, rgb(202,121,214) 100%);
 }
+
+.week-forecast-chart-conatiner{
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+
+@media screen and (min-width:$tablet-size) {
+  .week-forecast-chart-conatiner{
+    max-width: 500px;
+  }
+}
+
+
+@media screen and (min-width:$desktop-size) {
+  .week-forecast-chart-conatiner{
+    max-width: 600px;
+  }
+}

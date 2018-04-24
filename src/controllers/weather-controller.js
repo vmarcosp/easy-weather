@@ -2,14 +2,16 @@ import locationForm from '@components/location-form'
 import weatherDetails from '@components/weather-details'
 import weekForecast from '@components/week-forecast'
 
-import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
-import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
-
 import axios from 'axios'
 import store from 'store'
+import Chart from 'chart.js'
+import 'chartjs-plugin-datalabels'
+
+import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
+import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
 import { subscribe, publish } from 'pubsub-js'
 import { stringify } from 'qs'
-import { getAppElement, $on, toCelsius } from '@utils/helpers'
+import { getAppElement, $on, toCelsius, createChartOptions } from '@utils/helpers'
 
 const FAVORITE_LOCATION_NAME = 'favoriteLocation'
 const FAVORITE_ACTIVE_ICON = 'fa-star'
@@ -48,6 +50,8 @@ class WeatherController {
      * Call methods
      */
     this._findByFavCity()
+
+    Chart.defaults.global.defaultFontFamily = 'Montserrat'
   }
 
   /**
@@ -74,8 +78,10 @@ class WeatherController {
     }
 
     axios(`${WEATHER_MAP_URL}forecast/daily?${stringify(query)}`)
-      .then(({ data }) =>
-        publish(NEW_WEEKS_FORECAST, data))
+      .then(({ data }) => {
+        this._generateChart(data.list)
+        publish(NEW_WEEKS_FORECAST, data)
+      })
   }
 
   _findByFavCity () {
@@ -128,6 +134,15 @@ class WeatherController {
       $icon.classList.add(FAVORITE_INACTIVE_ICON)
       $icon.classList.remove(FAVORITE_ACTIVE_ICON)
     }
+  }
+
+  /**
+   *
+   * @param {object} forecasts
+   */
+  _generateChart (forecasts) {
+    const chartData = forecasts.map(({ temp }) => toCelsius(temp.day))
+    this.weekChart = new Chart(this.$weekForecastChart, createChartOptions(chartData))
   }
 
   _onChangeCity () {
