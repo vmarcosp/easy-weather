@@ -8,11 +8,13 @@ import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
 import axios from 'axios'
 import { subscribe, publish } from 'pubsub-js'
 import { stringify } from 'qs'
-import { getAppElement, $on } from '@utils/helpers'
+import { getAppElement, $on, toCelsius } from '@utils/helpers'
 
 class WeatherController {
   constructor () {
     this.$menuButton = getAppElement('menu-button')
+    this.$locationForm = getAppElement('location-form')
+    this.currentAppTheme = 'cool'
     this.currentLocation = {
       cityName: 'Blumenau',
       state: { sigla: 'SC' }
@@ -36,7 +38,7 @@ class WeatherController {
     /**
      * Call methods
      */
-    this._findByDefaultCity()
+    this._findByFavCity()
   }
 
   /**
@@ -49,7 +51,10 @@ class WeatherController {
     }
 
     axios(`${WEATHER_MAP_URL}weather?${stringify(query)}`)
-      .then(response => publish(NEW_WEATHER, {...response.data, ...this.currentLocation}))
+      .then(({ data }) => {
+        this._changeAppTheme(toCelsius(data.main.temp))
+        publish(NEW_WEATHER, { ...data, ...this.currentLocation })
+      })
   }
 
   _findForecast (city) {
@@ -59,7 +64,39 @@ class WeatherController {
     }
 
     axios(`${WEATHER_MAP_URL}forecast/daily?${stringify(query)}`)
-      .then(response => publish(NEW_WEEKS_FORECAST, response.data))
+      .then(({ data }) =>
+        publish(NEW_WEEKS_FORECAST, data))
+  }
+
+  _findByFavCity () {
+    this._findWeather('Blumenau')
+    this._findForecast('Blumenau')
+  }
+
+  /**
+   *
+   * @param {number} currentTemperature
+   */
+  _changeAppTheme (currentTemperature) {
+    const theme = this._getCurrentTheme(currentTemperature)
+    document.body.classList.remove(this.currentAppTheme)
+    this.$locationForm.classList.remove(this.currentAppTheme)
+
+    document.body.classList.add(theme)
+    this.$locationForm.classList.add(theme)
+
+    this.currentAppTheme = theme
+  }
+
+  /**
+   *
+   * @param {number} temperature
+   */
+  _getCurrentTheme (temperature) {
+    if (temperature >= 25) return 'hot'
+    if (temperature >= 20) return 'cool'
+    if (temperature >= 10) return 'cold'
+    else return 'freezing'
   }
 
   _onChangeCity () {
@@ -68,11 +105,6 @@ class WeatherController {
       this._findWeather(data.cityName)
       this._findForecast(data.cityName)
     })
-  }
-
-  _findByDefaultCity () {
-    this._findWeather('Blumenau')
-    this._findForecast('Blumenau')
   }
 
   _onMenuButtonClick () {
