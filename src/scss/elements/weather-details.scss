@@ -1,15 +1,20 @@
+
 .weather-details{
   js-display:flex;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 0;
   >.maininfo, >.citydetails{
     color: white;
   }
+
   >.citydetails{
+    text-transform: uppercase;
     font-size: 20px;
     padding: 1rem 0;
   }
+
   >.maininfo{
     js-display:flex;
     display: flex;
@@ -23,4 +28,9 @@
       font-size: 50px;
     }
   }
+  >.subinfos{
+    padding:.5rem;
+    color:lightgray;
+  }
 }
+

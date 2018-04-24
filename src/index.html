@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="warm">
+<body class="cold">
   <div class="overlay"></div>
 
   <div class="app-container">
@@ -30,7 +30,7 @@
 
       </div>
 
-      <form data-element="location-form" class="location-form warm">
+      <form data-element="location-form" class="location-form cold">
 
         <span data-element="close-button" class="closebutton fa fa-times"></span>
 
@@ -47,14 +47,47 @@
 
     <div class="weather-details">
 
-      <div class="citydetails">BLUMENAU, SC</div>
-      <div class="maininfo">
-        <span class="wi wi-day-sunny"></span>
-        <span class="temperature">26 º<sup>c</sup></span>
-      </div>
-      <div class="subinfos">
+      <div data-element="location-info" class="citydetails"></div>
 
+      <div class="maininfo">
+        <span data-element="weather-icon" class="wi"></span>
+        <span data-element="city-temperature" class="temperature"></span>
       </div>
+
+      <div class="subinfos">
+        <span class="temperature">MAX : 26 <sup>ºc</sup></span>
+        <span class="temperature">MIN : 20 <sup>ºc</sup></span>
+      </div>
+
+    </div>
+
+    <div class="week-forecast">
+      <ul class="dayslist">
+        <li class="day">
+          <span class="label">SEG</span>
+          <span class="max">26<sup>ºc</sup></span>
+          <span class="min">18<sup>ºc</sup></span>
+        </li>
+        <li class="day">
+          <span class="label">TER</span>
+          <span class="max">26<sup>ºc</sup></span>
+          <span class="min">18<sup>ºc</sup></span>
+        </li>
+        <li class="day">
+          <span class="label">QUA</span>
+          <span class="max">26<sup>ºc</sup></span>
+          <span class="min">18<sup>ºc</sup></span>
+        </li>
+        <li class="day">
+          <span class="label">QUI</span>
+          <span class="max">26<sup>ºc</sup></span>
+          <span class="min">18<sup>ºc</sup></span>
+        </li>
+        <li class="day">
+          <span class="label">SEX</span>
+          <span class="max">26<sup>ºc</sup></span>
+          <span class="min">18<sup>ºc</sup></span>
+      </ul>
     </div>
 
   </div>

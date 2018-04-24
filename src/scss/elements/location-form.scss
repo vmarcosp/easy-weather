@@ -43,6 +43,7 @@
     margin: 0 auto;
     background: transparent!important;
     position: relative;
+    js-display:flex;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -70,8 +71,15 @@
   }
 }
 
+@media screen and (min-width:$tablet-size) {
+  .location-form{
+    max-width: 500px;
+  }
+}
+
+
 @media screen and (min-width:$desktop-size) {
   .location-form{
-    max-width: 900px;
+    max-width: 600px;
   }
 }

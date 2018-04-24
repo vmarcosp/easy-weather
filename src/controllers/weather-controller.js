@@ -1,22 +1,35 @@
+/**
+ * Components
+ */
 import locationForm from '@components/location-form'
-import { NEW_CITY_SELECTED, OPEN_MENU } from '@constants/events'
+import weatherDetails from '@components/weather-details'
+/**
+ * Constants
+ */
+import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER } from '@constants/events'
 import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
-import { stringify } from 'qs'
-import { subscribe, publish } from 'pubsub-js'
-import { getAppElement } from '@utils/helpers'
+
 import axios from 'axios'
-import { $on } from '../utils/helpers'
+import { subscribe, publish } from 'pubsub-js'
+import { stringify } from 'qs'
+import { getAppElement, $on } from '@utils/helpers'
 
 class WeatherController {
   constructor () {
     this.$menuButton = getAppElement('menu-button')
+    this.currentLocation = {}
   }
 
   init () {
     this._onChangeCity()
     this._onMenuButtonClick()
     this._findByDefaultCity()
+
+    /**
+     * Boostrap components
+     */
     locationForm.init()
+    weatherDetails.init()
   }
 
   /**
@@ -28,7 +41,7 @@ class WeatherController {
       ...WEATHER_OPTIONS
     }
     axios(`${WEATHER_MAP_URL}weather?${stringify(query)}`)
-      .then(console.log)
+      .then(response => publish(NEW_WEATHER, {...response.data, ...this.currentLocation}))
   }
 
   _findForecast (city) {
@@ -43,8 +56,9 @@ class WeatherController {
 
   _onChangeCity () {
     subscribe(NEW_CITY_SELECTED, (message, data) => {
+      this.currentLocation = data
       this._findWeather(data.cityName)
-      this._findForecast(data.cityName)
+      // this._findForecast(data.cityName)
     })
   }
 
