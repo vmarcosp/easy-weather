@@ -1,12 +1,7 @@
-/**
- * Components
- */
 import locationForm from '@components/location-form'
 import weatherDetails from '@components/weather-details'
 import weekForecast from '@components/week-forecast'
-/**
- * Constants
- */
+
 import { NEW_CITY_SELECTED, OPEN_MENU, NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
 import { WEATHER_OPTIONS, WEATHER_MAP_URL } from '@constants/api'
 
@@ -52,6 +47,7 @@ class WeatherController {
       q: `${city},br`,
       ...WEATHER_OPTIONS
     }
+
     axios(`${WEATHER_MAP_URL}weather?${stringify(query)}`)
       .then(response => publish(NEW_WEATHER, {...response.data, ...this.currentLocation}))
   }

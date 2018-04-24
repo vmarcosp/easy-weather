@@ -1,6 +1,6 @@
 import { NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
-import { toCelsius, getAppElement } from '@utils/helpers'
 import { CELSIUS_HTML_TEMPLATE } from '@utils/templates'
+import { toCelsius, getAppElement } from '@utils/helpers'
 import { subscribe } from 'pubsub-js'
 
 const WEATHER_ICONS = {
@@ -25,7 +25,7 @@ const WEATHER_ICONS = {
 }
 
 class WeatherDetails {
-  constructor () {
+  constructor() {
     this.$cityTemperature = getAppElement('city-temperature')
     this.$locationInfo = getAppElement('location-info')
     this.$weatherIcon = getAppElement('weather-icon')
@@ -40,6 +40,7 @@ class WeatherDetails {
 
   _renderWeather (forecast) {
     const temperature = toCelsius(forecast.main.temp)
+
     this.$cityTemperature.innerHTML = `${temperature} ${CELSIUS_HTML_TEMPLATE}`
     this.$locationInfo.innerHTML = `${forecast.cityName}, ${forecast.state.sigla}`
     this.$weatherIcon.classList.add(WEATHER_ICONS[forecast.weather[0].icon])
@@ -49,19 +50,16 @@ class WeatherDetails {
    * @param {Array} days
    */
   _renderMaxAndMinTemp (days) {
-    let max = 0
-    let min = 0
+    const maxTemperature = (temperature, { temp }) =>
+      temperature < temp.max ? temp.max : temperature
 
-    days.forEach(day => {
-      const dayMax = day.temp.max
-      const dayMin = day.temp.min
+    const minTemperature = (temperature, { temp }) =>
+      temperature > temp.min ? temp.min : temperature
 
-      max = dayMax > max ? max : 0
-      max = dayMin < min ? min : 0
-    })
-
-    this.$maxTemp.innerHTML = `${max} ${CELSIUS_HTML_TEMPLATE}`
-    this.$minTemp.innerHTML = `${min} ${CELSIUS_HTML_TEMPLATE}`
+    this.$maxTemp.innerHTML =
+      `MAX: ${toCelsius(days.reduce(maxTemperature, 0))} ${CELSIUS_HTML_TEMPLATE}`
+    this.$minTemp.innerHTML =
+      `MIN: ${toCelsius(days.reduce(minTemperature, 500))} ${CELSIUS_HTML_TEMPLATE}`
   }
 
   _onNewWeather () {

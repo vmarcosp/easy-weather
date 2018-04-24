@@ -47,12 +47,12 @@ class LocationForm {
    */
   _renderStates (states) {
     this.states = states
-    const $options = ['<option disabled selected="selected" value="">Estado</option>']
 
-    states.map(state =>
-      $options.push(`<option value='${state.id}'>${state.nome}</option>`))
+    const $initialOption = ['<option disabled selected="selected" value="">Estado</option>']
+    const $options = states.map(state =>
+      `<option value='${state.id}'>${state.nome}</option>`)
 
-    this.$statesSelect.innerHTML = $options.join(' ')
+    this.$statesSelect.innerHTML = [...$initialOption, ...$options].join` `
   }
 
   _onStatesSelectChange () {
@@ -65,19 +65,24 @@ class LocationForm {
   _onFormSubmit () {
     $on(this.$form, 'submit', $event => {
       $event.preventDefault()
+
       const state = this.states.filter(state =>
         state.id === parseInt(this.$statesSelect.value))[0]
+
       publish(NEW_CITY_SELECTED, { state, cityName: this.$citiesSelect.input.value })
+
       this.$form.classList.remove('-active')
     })
   }
 
   _onCloseClick () {
-    $on(this.$closeButton, 'click', () => this.$form.classList.remove('-active'))
+    $on(this.$closeButton, 'click', () =>
+      this.$form.classList.remove('-active'))
   }
 
   _onOpenMenu () {
-    subscribe(OPEN_MENU, () => this.$form.classList.add('-active'))
+    subscribe(OPEN_MENU, () =>
+      this.$form.classList.add('-active'))
   }
 }
 
