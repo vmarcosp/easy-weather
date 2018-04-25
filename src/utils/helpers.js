@@ -17,11 +17,13 @@ export const createChartOptions = data => (
             color: 'white',
             font: { weight: 'bold' },
             align: 'end',
-            anchor: 'end' },
+            anchor: 'end'
+          },
           borderColor: 'white',
           label: 'Temp',
           fill: false,
-          data }]
+          data
+        }]
     },
     options: {
       legend: { display: false },
@@ -30,10 +32,13 @@ export const createChartOptions = data => (
       scales: {
         xAxes: [{
           ticks: { fontColor: 'white' },
-          gridLines: { display: false, color: 'white' } }],
+          gridLines: { display: false, color: 'white' }
+        }],
         yAxes: [{
-          ticks: { fontColor: 'white' },
-          gridLines: { color: 'white', display: false } }] }
+          ticks: { suggestedMax: 40, fontColor: 'white' },
+          gridLines: { color: 'white', display: false }
+        }]
+      }
     }
   }
 )

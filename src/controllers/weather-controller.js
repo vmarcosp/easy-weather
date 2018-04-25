@@ -61,7 +61,7 @@ class WeatherController {
 
     // Define chart font family
     Chart.defaults.global.defaultFontFamily = 'Montserrat'
-    Chart.defaults.global.defaultFontSize = '15'
+    Chart.defaults.global.defaultFontSize = '14'
   }
 
   /**
