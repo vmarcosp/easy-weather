@@ -48,5 +48,5 @@ Tecnologias
 - Babel
 
 API's
-[API de localidades IBGE](https://servicodados.ibge.gov.br/api/docs)
-[API de clima](https://openweathermap.org/)
+- [API de localidades IBGE](https://servicodados.ibge.gov.br/api/docs)
+- [API de clima](https://openweathermap.org/)
