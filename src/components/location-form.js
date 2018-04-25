@@ -38,7 +38,14 @@ class LocationForm {
 
   _findStates () {
     axios.get(`${IBGE_URL}/estados`)
-      .then(response => this._renderStates(response.data))
+      .then(({ data }) => {
+        data.sort((currentState, nextState) =>
+          currentState.nome > nextState.nome ? 1
+            : currentState.nome < nextState.nome ? -1
+              : 0)
+
+        this._renderStates(data)
+      })
       .catch(err =>
         console.error('Erro ao tentar buscar lista de estados. Erro =>', err))
   }

@@ -117,15 +117,12 @@ class WeatherController {
     const theme = this._getCurrentTheme(currentTemperature)
     const $container = getAppElement('app-container')
 
-    // Remove old theme
     $container.classList.remove(this.currentAppTheme)
     this.$locationForm.classList.remove(this.currentAppTheme)
 
-    // Add new theme
     $container.classList.add(theme)
     this.$locationForm.classList.add(theme)
 
-    // Save theme
     this.currentAppTheme = theme
   }
 

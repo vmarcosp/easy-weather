@@ -7,7 +7,6 @@ const DAYS = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB']
 
 class WeekForecast {
   constructor () {
-    console.log('s')
     this.$daysList = getAppElement('forecast-days-list')
   }
 
