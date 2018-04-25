@@ -4,6 +4,8 @@
 * Mobile rules
 */
 .location-form{
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 20;
   margin-left: -102%;
@@ -19,12 +21,13 @@
     margin: 0;
   }
   >.inputscontainer{
+    flex: 1;
   }
   >.buttoncontainer{
     margin-top: 10px;
   }
   >.closebutton{
-    float: right;
+    align-self: flex-end;
     color: white;
     font-size: 25px;
     margin-bottom: 5px;
@@ -36,6 +39,7 @@
 */
 @media screen and (min-width:$tablet-size) {
   .location-form{
+    display: block;
     height: auto;
     max-width: 500px;
     margin: 0 auto;
@@ -58,6 +62,9 @@
   }
 }
 
+/**
+* Desktop rules
+*/
 @media screen and (min-width:$desktop-size) {
   .location-form{
     max-width: 450px;
