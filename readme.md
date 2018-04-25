@@ -27,8 +27,8 @@ npm run start
 npm run build
 ```
 ## Live demo
+[Link live demo](https://easyweather.netlify.com/)
 ![](https://github.com/vmarcosp/easy-weather/blob/master/demo/1.JPG)
-- [Link live demo](https://easyweather.netlify.com/)
 
 ## Tecnologias e recursos
 Biliotecas
@@ -46,3 +46,7 @@ Tecnologias
 - CSS3
 - Webpack
 - Babel
+
+API's
+[API de localidades IBGE](https://servicodados.ibge.gov.br/api/docs)
+[API de clima](https://openweathermap.org/)
