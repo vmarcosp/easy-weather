@@ -1,5 +1,6 @@
 import { NEW_WEATHER, NEW_WEEKS_FORECAST } from '@constants/events'
 import { CELSIUS_HTML_TEMPLATE } from '@utils/templates'
+
 import { toCelsius, getAppElement } from '@utils/helpers'
 import { subscribe } from 'pubsub-js'
 
@@ -25,7 +26,7 @@ const WEATHER_ICONS = {
 }
 
 class WeatherDetails {
-  constructor() {
+  constructor () {
     this.$cityTemperature = getAppElement('city-temperature')
     this.$locationInfo = getAppElement('location-info')
     this.$weatherIcon = getAppElement('weather-icon')
@@ -34,6 +35,9 @@ class WeatherDetails {
   }
 
   init () {
+    /**
+     * Register events
+     */
     this._onNewWeather()
     this._onNewWeeksForecast()
   }
@@ -63,11 +67,13 @@ class WeatherDetails {
   }
 
   _onNewWeather () {
-    subscribe(NEW_WEATHER, (message, data) => this._renderWeather(data))
+    subscribe(NEW_WEATHER, (message, data) =>
+      this._renderWeather(data))
   }
 
   _onNewWeeksForecast () {
-    subscribe(NEW_WEEKS_FORECAST, (message, data) => this._renderMaxAndMinTemp(data.list))
+    subscribe(NEW_WEEKS_FORECAST, (message, data) =>
+      this._renderMaxAndMinTemp(data.list))
   }
 }
 

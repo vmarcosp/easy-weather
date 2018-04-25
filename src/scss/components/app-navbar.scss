@@ -1,5 +1,8 @@
 @import '@scss/utils/_variables.scss';
 
+/**
+* Mobile rules
+*/
 .app-navbar{
     z-index: 10;
     padding: 1rem .5rem;
@@ -53,6 +56,9 @@
   }
 }
 
+/**
+* Tablet rules
+*/
 @media screen and (min-width:$tablet-size) {
   .app-navbar{
     >.menubutton{

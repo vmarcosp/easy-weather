@@ -1,8 +1,10 @@
 import Awesomplete from 'awesomplete'
 import axios from 'axios'
+
 import { IBGE_URL } from '@constants/api'
-import { getAppElement, $on } from '@utils/helpers'
 import { NEW_CITY_SELECTED, OPEN_MENU } from '@constants/events'
+
+import { getAppElement, $on } from '@utils/helpers'
 import { publish, subscribe } from 'pubsub-js'
 
 const AUTOCOMPLETE_OPTIONS = {
@@ -20,16 +22,25 @@ class LocationForm {
   }
 
   init () {
+    /**
+     * Register events
+     */
     this._onOpenMenu()
     this._onCloseClick()
     this._onStatesSelectChange()
     this._onFormSubmit()
+
+    /**
+     * Call methods
+     */
     this._findStates()
   }
 
   _findStates () {
     axios.get(`${IBGE_URL}/estados`)
       .then(response => this._renderStates(response.data))
+      .catch(err =>
+        console.error('Erro ao tentar buscar lista de estados. Erro =>', err))
   }
 
   /**
@@ -38,7 +49,9 @@ class LocationForm {
    */
   _findCitiesByState (state) {
     axios.get(`${IBGE_URL}/estados/${state}/municipios`)
-      .then(response => { this.$citiesSelect.list = response.data })
+      .then(response => (this.$citiesSelect.list = response.data))
+      .catch(err =>
+        console.error(`Erro ao tentar buscar lista de cidades do estado: ${state}. Erro =>`, err))
   }
 
   /**

@@ -18,6 +18,13 @@ const FAVORITE_LOCATION_NAME = 'favoriteLocation'
 const FAVORITE_ACTIVE_ICON = 'fa-star'
 const FAVORITE_INACTIVE_ICON = 'fa-star-o'
 
+/**
+ * Set callback to return errors
+ */
+axios.interceptors.response.use(
+  response => response,
+  error => Promise.reject(error.response))
+
 class WeatherController {
   constructor () {
     this.$menuButton = getAppElement('menu-button')
@@ -52,7 +59,9 @@ class WeatherController {
      */
     this._findByFavCity()
 
+    // Define chart font family
     Chart.defaults.global.defaultFontFamily = 'Montserrat'
+    Chart.defaults.global.defaultFontSize = '15'
   }
 
   /**
@@ -69,8 +78,14 @@ class WeatherController {
         this._checkFavoriteLocation(this.currentLocation)
         this._changeAppTheme(toCelsius(data.main.temp))
         publish(NEW_WEATHER, { ...data, ...this.currentLocation })
-      }).catch(response => {
-        showMessage('Não foram encontrados resultados para a cidade selecionada.', 5 * 1000)
+      }).catch(err => {
+        console.error(`Erro ao tentar buscar previsão da cidade ${city}. Erro =>`, err)
+
+        if (err.status === 404) {
+          showMessage(`Não foram encontrados resultados para a cidade ${city}.`, 5)
+        } else {
+          showMessage(`Ocorreu um erro, verifique as informações e tente novamente.`, 5)
+        }
       })
   }
 
@@ -84,6 +99,8 @@ class WeatherController {
       .then(({ data }) => {
         this._generateChart(data.list)
         publish(NEW_WEEKS_FORECAST, data)
+      }).catch(err => {
+        console.error(`Erro ao tentar buscar previsão da semana para a cidade ${city}. Erro => `, err)
       })
   }
 
@@ -100,12 +117,15 @@ class WeatherController {
     const theme = this._getCurrentTheme(currentTemperature)
     const $container = getAppElement('app-container')
 
+    // Remove old theme
     $container.classList.remove(this.currentAppTheme)
     this.$locationForm.classList.remove(this.currentAppTheme)
 
+    // Add new theme
     $container.classList.add(theme)
     this.$locationForm.classList.add(theme)
 
+    // Save theme
     this.currentAppTheme = theme
   }
 
@@ -129,7 +149,6 @@ class WeatherController {
     const favoriteLocation = store.get(FAVORITE_LOCATION_NAME)
     const $icon = this.$favoriteButton.querySelector('.fa')
 
-    // refatorar
     if (favoriteLocation && favoriteLocation.cityName === cityName && state.sigla === favoriteLocation.state.sigla) {
       $icon.classList.remove(FAVORITE_INACTIVE_ICON)
       $icon.classList.add(FAVORITE_ACTIVE_ICON)
@@ -163,14 +182,14 @@ class WeatherController {
 
   _onFavoriteButtonClick () {
     $on(this.$favoriteButton, 'click', () => {
-      const $icon = this.$favoriteButton.querySelector('.fa')
-      const favoriteLocation = store.get(FAVORITE_LOCATION_NAME)
       const { cityName, state } = this.currentLocation
+      const favoriteLocation = store.get(FAVORITE_LOCATION_NAME)
+      const $icon = this.$favoriteButton.querySelector('.fa')
 
+      // Change icon
       $icon.classList.toggle(FAVORITE_INACTIVE_ICON)
       $icon.classList.toggle(FAVORITE_ACTIVE_ICON)
 
-      // Refatorar...
       if (favoriteLocation && favoriteLocation.cityName === cityName && favoriteLocation.state.sigla && state.sigla) {
         store.set(FAVORITE_LOCATION_NAME, undefined)
       } else {

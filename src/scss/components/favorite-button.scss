@@ -1,5 +1,8 @@
 @import '@scss/utils/_variables.scss';
 
+/**
+* Mobile rules
+*/
 .favorite-button{
   -js-display:flex;
   display: flex;
@@ -16,6 +19,9 @@
   }
 }
 
+/**
+* Desktop rules
+*/
 @media screen and (min-width:$desktop-size) {
   .favorite-button{
     font-size: 15px;

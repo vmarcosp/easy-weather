@@ -1,6 +1,7 @@
-import { NEW_WEEKS_FORECAST } from '@constants/events'
 import { toCelsius, getAppElement } from '@utils/helpers'
 import { subscribe } from 'pubsub-js'
+
+import { NEW_WEEKS_FORECAST } from '@constants/events'
 
 const DAYS = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB']
 
@@ -11,6 +12,9 @@ class WeekForecast {
   }
 
   init () {
+    /**
+     * Register events
+     */
     this._onNewWeeksForecast()
   }
 

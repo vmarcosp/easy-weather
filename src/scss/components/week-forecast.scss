@@ -36,6 +36,9 @@
   }
 }
 
+/**
+* Tablet rules
+*/
 @media screen and (min-width:$tablet-size) {
   .week-forecast{
     margin: 0 auto;
@@ -43,6 +46,9 @@
   }
 }
 
+/**
+* Desktop rules
+*/
 @media screen and (min-width:$desktop-size) {
   .week-forecast{
     margin: 0 auto;
