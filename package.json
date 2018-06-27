@@ -6,7 +6,8 @@
   "author": "Marcos Vinicius <vmarcosp>",
   "license": "MIT",
   "scripts": {
-    "build:folders": "rimraf build && mkdir build && cpx src/index.html build/",
+    "build:folders": "rimraf build && mkdir build && npm run copy-files",
+    "copy-files":"cpx src/manifest.json build/ && cpx src/sw.js build/ && cpx src/index.html build/",
     "build": "npm run build:folders && webpack --mode=production",
     "lint": "eslint src/",
     "start": "npm run build && http-server ./build",
