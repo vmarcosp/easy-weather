@@ -1,0 +1,9 @@
+{
+  "name": "Easy Weather",
+  "short_name": "Easy Weather",
+  "theme_color": "#ffff",
+  "background_color": "#ffff",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": []
+}

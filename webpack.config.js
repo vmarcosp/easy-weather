@@ -1,5 +1,11 @@
 const { resolve } = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const { paths } = require('./jsconfig.json').compilerOptions
+
+const alias = Object.keys(paths).reduce((alias, key) => {
+  alias[key] = resolve(__dirname, paths[key][0])
+  return alias
+}, {})
 
 module.exports = function (env, argv) {
   return {
@@ -11,12 +17,7 @@ module.exports = function (env, argv) {
     },
 
     resolve: {
-      alias: {
-        '@scss': resolve(__dirname, 'src/scss'),
-        '@constants': resolve(__dirname, 'src/constants'),
-        '@components': resolve(__dirname, 'src/components'),
-        '@utils': resolve(__dirname, 'src/utils')
-      }
+      alias
     },
 
     module: {

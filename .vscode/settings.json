@@ -1,0 +1,4 @@
+{
+    "eslint.enable": true,
+    "eslint.options": { "configFile": "/home/vmarcosp/Projects/easy-weather/.eslintrc.json" }
+  }
